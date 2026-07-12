@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tasmania 2027 for Raymond and Jodie</title>
+    <style>
+      :root {
+        --ink: #17231d;
+        --muted: #526257;
+        --paper: #fbfaf3;
+        --line: #d8ded5;
+        --leaf: #2e6b4e;
+        --mist: #eef5ee;
+        --gold: #b9722f;
+        --coral: #b95d4d;
+        --blue: #2d6573;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 12% 10%, rgba(185, 114, 47, 0.12), transparent 28%),
+          radial-gradient(circle at 88% 18%, rgba(45, 101, 115, 0.12), transparent 24%),
+          linear-gradient(180deg, #fffdf6, var(--paper));
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 620px;
+        display: grid;
+        align-items: end;
+        padding: clamp(28px, 7vw, 82px);
+        color: #fff;
+        background:
+          linear-gradient(180deg, rgba(10, 20, 18, 0.1), rgba(10, 20, 18, 0.78)),
+          url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Wineglass_Bay_from_Lookout.jpg/960px-Wineglass_Bay_from_Lookout.jpg") center/cover;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 38px 38px;
+        pointer-events: none;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: clamp(22px, 5vw, 70px);
+        bottom: clamp(26px, 6vw, 76px);
+        width: min(30vw, 340px);
+        aspect-ratio: 4 / 3;
+        border: 12px solid rgba(255, 255, 255, 0.9);
+        border-bottom-width: 46px;
+        background: url("itinerary-assets/rainforest-track.jpeg") center/cover;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+        transform: rotate(4deg);
+        opacity: 0.95;
+      }
+
+      .hero > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 920px;
+        margin-bottom: 16px;
+        font-size: clamp(2.4rem, 7vw, 5.8rem);
+        line-height: 1.02;
+      }
+
+      h2 {
+        font-size: clamp(1.7rem, 4vw, 2.6rem);
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin-bottom: 0;
+        font-size: clamp(1.05rem, 2vw, 1.32rem);
+      }
+
+      .eyebrow {
+        margin-bottom: 10px;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      section {
+        border-bottom: 1px solid var(--line);
+        padding: clamp(34px, 6vw, 76px) 0;
+      }
+
+      .wrap {
+        width: min(1160px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .scribble {
+        max-width: 260px;
+        color: var(--muted);
+        font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+        font-size: 1.05rem;
+        transform: rotate(-2deg);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .photo-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        align-items: center;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background:
+          linear-gradient(90deg, rgba(46, 107, 78, 0.06) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(46, 107, 78, 0.05) 1px, transparent 1px),
+          #fffdf8;
+        background-size: 30px 30px;
+      }
+
+      .photo-strip figure {
+        position: relative;
+        margin: 0;
+        padding: 10px 10px 34px;
+        background: #fff;
+        border: 1px solid #e4dece;
+        box-shadow: 0 14px 34px rgba(37, 48, 42, 0.14);
+        z-index: 1;
+      }
+
+      .photo-strip figure::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        width: 78px;
+        height: 22px;
+        background: rgba(224, 200, 151, 0.78);
+        transform: translateX(-50%) rotate(-2deg);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      }
+
+      .photo-strip figure:nth-child(2n) {
+        transform: rotate(3deg) translateY(16px);
+      }
+
+      .photo-strip figure:nth-child(3n) {
+        transform: rotate(-3deg) translateY(-8px);
+      }
+
+      .photo-strip figure:nth-child(4n) {
+        transform: rotate(2deg) translateY(-18px);
+      }
+
+      .photo-strip figure:nth-child(5n) {
+        transform: rotate(-2deg) translateY(12px);
+      }
+
+      .photo-strip img {
+        width: 100%;
+        height: 210px;
+        display: block;
+        object-fit: cover;
+      }
+
+      .photo-strip figcaption {
+        position: absolute;
+        right: 12px;
+        bottom: 8px;
+        left: 12px;
+        color: var(--muted);
+        font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+        font-size: 0.98rem;
+        text-align: center;
+      }
+
+      .photo-strip figure:nth-child(1),
+      .photo-strip figure:nth-child(6) {
+        grid-column: span 2;
+      }
+
+      .photo-strip figure:nth-child(1) img,
+      .photo-strip figure:nth-child(6) img {
+        height: 260px;
+      }
+
+      .option-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .option {
+        padding: 18px;
+      }
+
+      .option.best {
+        border-top: 8px solid var(--leaf);
+      }
+
+      .option h3 {
+        margin-bottom: 8px;
+      }
+
+      .availability-check {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: 18px;
+        margin-top: 18px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-left: 8px solid var(--gold);
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .availability-check p:last-child {
+        margin-bottom: 0;
+      }
+
+      .budget-lead {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.65fr);
+        gap: 18px;
+        align-items: stretch;
+        margin-bottom: 18px;
+      }
+
+      .budget-total {
+        display: grid;
+        align-content: center;
+        padding: 24px;
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .budget-total strong {
+        display: block;
+        margin: 4px 0 8px;
+        color: #f4c27c;
+        font-size: clamp(2rem, 5vw, 3.7rem);
+        line-height: 1;
+      }
+
+      .budget-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .table-scroll {
+        overflow-x: auto;
+      }
+
+      .budget-table th,
+      .budget-table td {
+        padding: 13px 15px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .budget-table th:last-child,
+      .budget-table td:last-child {
+        width: 190px;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .budget-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .source-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .map-panel {
+        display: block;
+      }
+
+      .route-map {
+        width: 100%;
+        height: 680px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        z-index: 1;
+      }
+
+      .numbered-map-pin {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 3px solid #fff;
+        border-radius: 50% 50% 50% 0;
+        background: var(--leaf);
+        box-shadow: 0 4px 12px rgba(23, 35, 29, 0.32);
+        color: #fff;
+        font-size: 0.82rem;
+        font-weight: 900;
+        transform: rotate(-45deg);
+      }
+
+      .numbered-map-pin span {
+        transform: rotate(45deg);
+      }
+
+      .route-summary {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .route-total {
+        padding: 14px;
+        border-radius: 8px;
+        background: var(--mist);
+      }
+
+      .route-total strong {
+        display: block;
+        color: var(--leaf);
+        font-size: 1.5rem;
+      }
+
+      .distance-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 28px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .distance-list li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+        padding: 10px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .distance-list span:last-child {
+        color: var(--muted);
+        font-weight: 750;
+        text-align: right;
+      }
+
+      .itinerary-day {
+        scroll-margin-top: 24px;
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .itinerary-day.map-highlight {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 4px rgba(185, 114, 47, 0.2), 0 18px 40px rgba(23, 35, 29, 0.14);
+        transform: translateY(-2px);
+      }
+
+      .route-list {
+        margin-top: 18px;
+        padding: 18px;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+      }
+
+      .card img {
+        display: block;
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+      }
+
+      .card .body {
+        padding: 18px;
+      }
+
+      .feature {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.05fr);
+        gap: 0;
+      }
+
+      .feature img {
+        height: 100%;
+        min-height: 320px;
+      }
+
+      .personal {
+        background: var(--mist);
+      }
+
+      .personal::before {
+        content: "";
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 92px;
+        height: 24px;
+        background: rgba(224, 200, 151, 0.72);
+        transform: rotate(5deg);
+        z-index: 2;
+      }
+
+      .date {
+        color: var(--leaf);
+        font-weight: 850;
+      }
+
+      .pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 12px;
+        background: #fff;
+        font-weight: 750;
+      }
+
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        margin-top: 12px;
+        border-radius: 8px;
+        padding: 8px 13px;
+        background: var(--leaf);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .note {
+        border-left: 6px solid var(--gold);
+        padding: 18px;
+        background: #fff;
+      }
+
+      .journal-board {
+        position: relative;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background:
+          linear-gradient(90deg, rgba(46, 107, 78, 0.07) 1px, transparent 1px),
+          linear-gradient(0deg, rgba(46, 107, 78, 0.06) 1px, transparent 1px),
+          #fffdf8;
+        background-size: 28px 28px;
+        box-shadow: 0 18px 42px rgba(37, 48, 42, 0.08);
+      }
+
+      .tiny-route {
+        height: 120px;
+        margin: 20px 0 0;
+      }
+
+      .tiny-route svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .vehicle-callout {
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 10px;
+        background: var(--mist);
+      }
+
+      .itinerary-list {
+        display: grid;
+        gap: 18px;
+      }
+
+      .itinerary-day {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
+      }
+
+      .itinerary-day img {
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+        object-fit: cover;
+      }
+
+      .day-body {
+        padding: 22px;
+      }
+
+      .map-stop {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        margin-bottom: 10px;
+        border-radius: 999px;
+        padding: 4px 11px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      .day-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .day-note {
+        padding: 14px;
+        border-radius: 10px;
+        background: var(--mist);
+      }
+
+      .day-note h4 {
+        margin: 0 0 7px;
+      }
+
+      @media (max-width: 900px) {
+        .grid,
+        .gallery,
+        .feature,
+        .option-grid,
+        .availability-check,
+        .budget-lead,
+        .map-panel,
+        .itinerary-day,
+        .day-columns {
+          grid-template-columns: 1fr;
+        }
+
+        .photo-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .distance-list {
+          grid-template-columns: 1fr;
+        }
+
+        .route-map {
+          height: 520px;
+        }
+
+        .photo-strip figure:nth-child(1),
+        .photo-strip figure:nth-child(6) {
+          grid-column: span 1;
+        }
+
+        .hero::after {
+          display: none;
+        }
+
+        .section-heading {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">For Raymond and Jodie</p>
+        <h1>Tasmania, autumn 2027</h1>
+        <p>A researched road trip for Raymond, Jodie and the kids: real places, real photos, kinder wildlife watching, good food stops and enough time to enjoy it properly.</p>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="wrap journal-board">
+          <div class="grid">
+            <div>
+            <h2>Best Window</h2>
+            <p>The best post-January option is the Queensland autumn school holiday window: leave Brisbane on Saturday 27 March 2027, start the road trip on Sunday 28 March, return to Hobart by Saturday 10 April, and fly home on Sunday 11 April.</p>
+            <p>This is chosen for the family's availability and the autumn conditions: it avoids Christmas and New Year, keeps daylight usable, gives cooler walking weather, and places the whole trip inside the Queensland break. Because departure is on Easter Saturday, flights, the vehicle and the first few nights need booking early.</p>
+            <div class="pills">
+              <span class="pill">27 Mar to 11 Apr 2027</span>
+              <span class="pill">Inside Qld school holidays</span>
+              <span class="pill">Autumn weather</span>
+              <span class="pill">Book Easter early</span>
+              <span class="pill">Final Hobart night</span>
+            </div>
+              <div class="tiny-route" aria-hidden="true">
+                <svg viewBox="0 0 720 120">
+                  <path d="M24 78 C118 16 176 104 270 48 C372 -12 420 114 518 58 C594 16 636 32 696 72" fill="none" stroke="#2e6b4e" stroke-width="5" stroke-linecap="round" stroke-dasharray="9 13"></path>
+                  <circle cx="24" cy="78" r="7" fill="#b9722f"></circle>
+                  <circle cx="270" cy="48" r="7" fill="#2d6573"></circle>
+                  <circle cx="518" cy="58" r="7" fill="#b95d4d"></circle>
+                  <circle cx="696" cy="72" r="7" fill="#b9722f"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="note">
+            <h2>Simple Recommendation</h2>
+            <p>Two weeks is the version worth sharing: Hobart, Tasman Peninsula, Freycinet, Launceston or Deloraine, Great Lake and Miena, Cradle Mountain, Lake Burbury, Queenstown, Strahan, Nelson Falls and back to Hobart.</p>
+            <p class="muted">No invented images. The destination photos are genuine location photos, and the personal photos are the ones you supplied.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Date Options</h2>
+          <div class="option-grid">
+            <article class="card option best">
+              <h3>Best two-week plan</h3>
+              <p class="date">Sat 27 Mar to Sun 11 Apr 2027</p>
+              <p><strong>Why this one:</strong> Best balance of the dates the family can travel, autumn weather and route comfort. It uses almost the full Queensland autumn school holiday window and avoids Christmas/New Year pressure.</p>
+              <p><strong>Weather:</strong> Cooler than summer, generally better for walking, with autumn colours and softer light. Still pack waterproofs and warm layers for Cradle Mountain and the west coast.</p>
+              <p><strong>Route fit:</strong> Enough time for Hobart, Tasman Peninsula, Freycinet, a north/central resupply day, Great Lake, Cradle Mountain, Lake Burbury, Queenstown, Strahan, Nelson Falls and a final Hobart night.</p>
+            </article>
+            <article class="card option">
+              <h3>Best one-week plan</h3>
+              <p class="date">Sat 27 Mar to Sun 4 Apr 2027</p>
+              <p><strong>Why this one:</strong> Best if they can only manage a week, but it starts on Easter Saturday. Book flights, Hobart and the vehicle as soon as the group is definite.</p>
+              <p><strong>Weather:</strong> Still autumn-friendly, with good daylight for drives and walks. Keep mountain plans flexible.</p>
+              <p><strong>Route fit:</strong> Highlights only: Hobart, Tasman Peninsula, Freycinet, Cradle Mountain, Lake Burbury, Queenstown, Strahan and Nelson Falls. Bay of Fires should stay optional.</p>
+            </article>
+            <article class="card option">
+              <h3>Second one-week plan</h3>
+              <p class="date">Sat 3 Apr to Sun 11 Apr 2027</p>
+              <p><strong>Why this one:</strong> Workable if their availability is later in the school break, but it may run closer to Easter travel pressure and Tasmania's own school holiday period.</p>
+              <p><strong>Weather:</strong> Similar autumn benefits, but with slightly shorter days than the earlier week.</p>
+              <p><strong>Route fit:</strong> Keep it disciplined. Choose either the east coast plus Cradle Mountain or the west coast loop, not every possible detour.</p>
+            </article>
+          </div>
+          <div class="availability-check">
+            <div>
+              <p class="eyebrow">Availability check</p>
+              <h3>Yes, these dates fit the school calendar</h3>
+            </div>
+            <div>
+              <p>The calendar you supplied establishes the key rule: travel has to sit inside the Queensland state-school break. The official 2027 calendar places the autumn holiday from <strong>Friday 26 March to Sunday 11 April</strong>, so the proposed Saturday 27 March departure and Sunday 11 April return are fully inside it.</p>
+              <p class="muted">The 2026 image was the starting reference; the actual 2027 dates have been checked against the Queensland Department of Education's published 2027 calendar. Easter falls at the start of this break, so the fit is excellent but availability is likely to tighten early.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="budget-lead">
+            <div>
+              <p class="eyebrow">Working budget</p>
+              <h2>What two weeks might cost</h2>
+              <p>This is an honest planning estimate, not a set of invented quotes. It uses a working group of <strong>five travellers: three adults and two children</strong>, sharing family rooms or two-bedroom cabins for 15 nights and using one roomy automatic vehicle.</p>
+              <p>For this version, I would aim for <strong>A$14,000</strong> and keep <strong>A$18,000</strong> as the upper planning limit. Booking early, self-catering some remote nights and choosing a comfortable wagon or SUV instead of a people-mover should pull it towards the lower half.</p>
+            </div>
+            <div class="card budget-total">
+              <span>Realistic family planning range</span>
+              <strong>A$11,000-17,700</strong>
+              <span>including a 10% contingency</span>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+          <table class="budget-table">
+            <thead>
+              <tr>
+                <th>Part of the trip</th>
+                <th>What the allowance covers</th>
+                <th>Estimate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Return flights</strong></td>
+                <td>Brisbane-Hobart for five, with checked luggage. Easter-weekend travel is allowed for at the higher end.</td>
+                <td>A$1,500-2,800</td>
+              </tr>
+              <tr>
+                <td><strong>Vehicle hire</strong></td>
+                <td>Fifteen days in a comfortable automatic SUV, wagon or suitable people-carrier, with a sensible allowance for reduced-excess cover.</td>
+                <td>A$1,800-2,500</td>
+              </tr>
+              <tr>
+                <td><strong>Fuel and parking</strong></td>
+                <td>The full Hobart-east coast-highlands-west coast-Hobart loop, plus local driving and parking.</td>
+                <td>A$350-550</td>
+              </tr>
+              <tr>
+                <td><strong>Accommodation</strong></td>
+                <td>Fifteen nights in family rooms, cabins or two-bedroom stays, including a final Hobart night.</td>
+                <td>A$3,900-6,000</td>
+              </tr>
+              <tr>
+                <td><strong>Food</strong></td>
+                <td>Breakfasts, bakery and picnic lunches, vegetarian dinners, drinks and several cabin meals using local produce.</td>
+                <td>A$1,800-2,900</td>
+              </tr>
+              <tr>
+                <td><strong>Parks and activities</strong></td>
+                <td>A whole-vehicle national-parks pass plus a measured selection of paid visits, kayaking or guided nature experiences.</td>
+                <td>A$600-1,300</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="vehicle-callout">
+            <strong>Before booking:</strong> replace these allowances with live quotes for the exact group size. If there are more or fewer than two children, flights and food change per person; accommodation and vehicle costs may jump only when another room or a larger vehicle becomes necessary.
+          </div>
+          <div class="source-links">
+            <a class="button" href="https://education.qld.gov.au/about/Pages/futureDates.aspx">Check official 2027 school dates</a>
+            <a class="button" href="https://parks.tas.gov.au/explore-our-parks/know-before-you-go/park-passes-and-entry-fees">Check Tasmania parks passes</a>
+            <a class="button" href="https://www.tasvacations.com/assets/pdfs/Tasmanian_Vacations_Brochure2627.pdf">See 2026/27 vehicle benchmarks</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="photo-strip">
+            <figure>
+              <img src="itinerary-assets/raymond-jodie-first-evening.png" alt="Supplied personal photo">
+              <figcaption>first evening energy</figcaption>
+            </figure>
+            <figure>
+              <img src="itinerary-assets/wildlife-bird-stop.jpeg" alt="Supplied personal walking photo with bird">
+              <figcaption>wildlife moments</figcaption>
+            </figure>
+            <figure>
+              <img src="itinerary-assets/bird-encounter.jpeg" alt="Supplied personal bird encounter photo">
+              <figcaption>ridiculous good luck</figcaption>
+            </figure>
+            <figure>
+              <img src="itinerary-assets/rainforest-bridge.jpeg" alt="Supplied personal rainforest bridge photo">
+              <figcaption>tracks and bridges</figcaption>
+            </figure>
+            <figure>
+              <img src="itinerary-assets/creek-rest-stop.jpeg" alt="Supplied personal creek rest photo">
+              <figcaption>waterfall pauses</figcaption>
+            </figure>
+            <figure>
+              <img src="itinerary-assets/rainforest-track.jpeg" alt="Supplied personal rainforest track photo">
+              <figcaption>green-track chaos</figcaption>
+            </figure>
+            <figure>
+              <img src="itinerary-assets/giant-tree.jpeg" alt="Supplied personal giant tree photo">
+              <figcaption>big tree energy</figcaption>
+            </figure>
+            <figure>
+              <img src="itinerary-assets/raymond-jodie-small-detours.png" alt="Supplied personal photo">
+              <figcaption>small discoveries</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Driving Map</h2>
+          <div class="map-panel">
+            <div id="route-map" class="route-map" role="img" aria-label="Interactive road map of the Tasmania itinerary"></div>
+            <div class="card route-list">
+              <h3>Route Distances</h3>
+              <div class="route-summary">
+                <div class="route-total"><strong>1,228 km</strong><span>full loop</span></div>
+                <div class="route-total"><strong>17 hr 18</strong><span>wheel time</span></div>
+              </div>
+              <ol class="distance-list">
+                <li><span>Hobart to Tasman Peninsula</span><span>95 km · 1 hr 21</span></li>
+                <li><span>Tasman Peninsula to Freycinet</span><span>210 km · 3 hr 10</span></li>
+                <li><span>Freycinet to Deloraine</span><span>205 km · 2 hr 37</span></li>
+                <li><span>Deloraine to Miena</span><span>70 km · 1 hr 03</span></li>
+                <li><span>Miena to Cradle Mountain</span><span>164 km · 2 hr 22</span></li>
+                <li><span>Cradle Mountain to Queenstown</span><span>110 km · 1 hr 41</span></li>
+                <li><span>Queenstown to Lake Burbury</span><span>18 km · 14 min</span></li>
+                <li><span>Lake Burbury to Strahan</span><span>67 km · 56 min</span></li>
+                <li><span>Strahan to Nelson Falls</span><span>68 km · 52 min</span></li>
+                <li><span>Nelson Falls to Hobart</span><span>222 km · 3 hr 02</span></li>
+              </ol>
+              <p class="muted">Road distances and normal-condition driving estimates exclude stops, traffic, roadworks and weather delays.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <h2>Detailed Driving Itinerary</h2>
+              <p class="muted">This is the version worth showing: dates, route position, what to do, where it sits on the map, and the practical reason each stop earns its place.</p>
+            </div>
+            <p class="scribble">follow the numbered map stops above</p>
+          </div>
+          <div class="itinerary-list">
+            <article id="stop-hobart" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Hobart_Tasmania_waterfront_TMAG_2008.jpg/960px-Hobart_Tasmania_waterfront_TMAG_2008.jpg" alt="Hobart waterfront">
+              <div class="day-body">
+                <span class="map-stop">Map stop 1</span>
+                <p class="date">Sat 27 Mar - Hobart arrival</p>
+                <h3>Fly Brisbane to Hobart, then stop</h3>
+                <p>Do not start the road trip on arrival day. The best first move is a central Hobart stay, dinner within walking distance, and an easy look at the route so the holiday feels exciting rather than logistical.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>Where it is</h4>
+                    <p>South-east Tasmania, on the Derwent. This is the start and finish point for the loop.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Practical plan</h4>
+                    <p>Book central accommodation, collect the vehicle on Sunday morning, and buy picnic and breakfast supplies before leaving the city.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="stop-tasman" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Tasman%27s_Arch%2C_Tasman_National_Park%2C_Tasmania.jpg/960px-Tasman%27s_Arch%2C_Tasman_National_Park%2C_Tasmania.jpg" alt="Tasman's Arch">
+              <div class="day-body">
+                <span class="map-stop">Map stop 2</span>
+                <p class="date">Sun 28 to Mon 29 Mar - Tasman Peninsula</p>
+                <h3>Cliffs, sea air and an easy first road leg</h3>
+                <p>Drive south-east from Hobart toward Eaglehawk Neck and the Tasman Peninsula. This gives the first road-trip feeling without a punishing drive: coast, cliffs, geology, short walks and big views.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>What to do</h4>
+                    <p>Tasman Arch, Devils Kitchen, Tessellated Pavement, safe lookouts and one manageable coastal walk. Keep wildlife watching observational and low-key.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Food and stay</h4>
+                    <p>Stay on or near the peninsula. Carry Hobart picnic supplies and check dinner menus before booking because rural vegetarian options can be uneven.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="stop-freycinet" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Wineglass_Bay_from_Lookout.jpg/960px-Wineglass_Bay_from_Lookout.jpg" alt="Wineglass Bay from lookout">
+              <div class="day-body">
+                <span class="map-stop">Map stop 3</span>
+                <p class="date">Tue 30 to Wed 31 Mar - Freycinet</p>
+                <h3>East-coast scenery without rushing north</h3>
+                <p>Move up the east coast to Freycinet. This is the photogenic coastal centrepiece: Wineglass Bay lookout, beaches, kayaking if conditions and operators suit, and enough downtime for the kids to enjoy the place.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>What to do</h4>
+                    <p>Wineglass Bay lookout, Honeymoon Bay, Cape Tourville, beach time, coastal birdwatching and a picnic rather than a seafood-led day.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Route logic</h4>
+                    <p>This keeps the loop moving clockwise. Bay of Fires is optional only if everyone wants the extra distance; it should not make the route frantic.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="stop-highlands" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Highland_Lakes_Road_near_Great_Lake%2C_Miena%2C_Tasmania_01.jpg/960px-Highland_Lakes_Road_near_Great_Lake%2C_Miena%2C_Tasmania_01.jpg" alt="Great Lake near Miena">
+              <div class="day-body">
+                <span class="map-stop">Map stops 4 and 5</span>
+                <p class="date">Thu 1 to Sat 3 Apr - Launceston or Deloraine, then Great Lake and Miena</p>
+                <h3>Resupply, then slow down in the highlands</h3>
+                <p>Use Launceston or Deloraine as the practical hinge between east coast and highlands: coffee, bakery, shops, galleries, groceries and a reset. Then head into the Central Highlands for Great Lake and Miena.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>What to do</h4>
+                    <p>Make the highlands quiet rather than activity-heavy: lakeside cabin, gentle walks, photography, birdwatching, safe kayaking if available, and one slow morning.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Food and vehicle</h4>
+                    <p>Self-catering matters here. Buy vegetarian supplies before Miena. The road is sealed, but a comfortable SUV or wagon helps with luggage and changing weather.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="stop-cradle" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Boat_shed_and_Cradle_Mountain_at_Dove_Lake%2C_Tas.jpg/960px-Boat_shed_and_Cradle_Mountain_at_Dove_Lake%2C_Tas.jpg" alt="Cradle Mountain and Dove Lake">
+              <div class="day-body">
+                <span class="map-stop">Map stop 6</span>
+                <p class="date">Sun 4 to Tue 6 Apr - Cradle Mountain</p>
+                <h3>Boardwalks, rainforest, mountains and possible wildlife</h3>
+                <p>Cradle Mountain is the main mountain-and-rainforest stay. Use the shuttle and marked tracks. Let the weather decide the intensity: Dove Lake if suitable, Enchanted Walk and shorter boardwalks if conditions are damp or cold.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>What to do</h4>
+                    <p>Dove Lake, Enchanted Walk, rainforest, waterfalls, photography, and quiet possible sightings of wombats, wallabies, pademelons, echidnas and birds.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Practical caution</h4>
+                    <p>Book accommodation early, check park notices, carry warm layers, and do not assume mountain weather will cooperate every day.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="stop-west" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/King_River_and_Lake_Burbury_between_Jukes_and_Huxley.jpg/960px-King_River_and_Lake_Burbury_between_Jukes_and_Huxley.jpg" alt="Lake Burbury">
+              <div class="day-body">
+                <span class="map-stop">Map stops 7 and 8</span>
+                <p class="date">Wed 7 Apr - Lake Burbury and Queenstown</p>
+                <h3>Cross into the west-coast landscape</h3>
+                <p>This is a big change in mood: mountain roads, mining history, Lake Burbury, and a sense of moving into the wilder west. Keep the drive in daylight and stop only at safe pull-offs.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>What to do</h4>
+                    <p>Lake Burbury viewpoints, short weather-dependent walks, Queenstown streetscape, photography and a low-pressure evening.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Food and timing</h4>
+                    <p>Queenstown can be limited for vegetarian food. Check menus, keep a backup meal, and avoid arriving late with hungry children.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="stop-strahan" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/OceanBeachwest_from_air.jpg/960px-OceanBeachwest_from_air.jpg" alt="Ocean Beach near Strahan">
+              <div class="day-body">
+                <span class="map-stop">Map stop 9</span>
+                <p class="date">Thu 8 to Fri 9 Apr - Strahan and Ocean Beach</p>
+                <h3>Wild beach, river town, rainforest mood</h3>
+                <p>Strahan gives the west coast its sense of space: Ocean Beach, rainforest, river scenery and weather that can become part of the experience. This should be atmospheric, not overpacked.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>What to do</h4>
+                    <p>Ocean Beach walk, short rainforest stops, gentle kayaking if safe and suitable, and interpretation experiences that observe wildlife from an appropriate distance.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Food and stay</h4>
+                    <p>Book ahead and check vegetarian options. Strahan menus can lean seafood-heavy, so cabin cooking and backup supplies are sensible.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="stop-return" class="card itinerary-day">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Nelson_Falls%2C_Princess_River_Conservation_Area.jpg/960px-Nelson_Falls%2C_Princess_River_Conservation_Area.jpg" alt="Nelson Falls">
+              <div class="day-body">
+                <span class="map-stop">Map stops 10 and 1</span>
+                <p class="date">Sat 10 to Sun 11 Apr - Nelson Falls, Hobart, fly home</p>
+                <h3>Make the return a proper final chapter</h3>
+                <p>Return from the west coast via Nelson Falls and safe, weather-appropriate stops, then sleep in Hobart before flying home. This avoids the mistake of combining a long west-coast drive with airport pressure.</p>
+                <div class="day-columns">
+                  <div class="day-note">
+                    <h4>What to do</h4>
+                    <p>Nelson Falls boardwalk, final scenic stops if weather allows, Hobart dinner, and a relaxed final morning before the airport.</p>
+                  </div>
+                  <div class="day-note">
+                    <h4>Why it matters</h4>
+                    <p>The last day shapes how the whole trip feels afterwards. Build in margin, not stress.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/route-map.ts"></script>
+  </body>
+</html>
