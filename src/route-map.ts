@@ -23,16 +23,36 @@ const stopCatalogue: Record<string, RouteStop> = {
   nelson: {name: "Nelson Falls", coordinates: [-42.09989, 145.73737], target: "stop-return"}
 };
 
-const routePlans: Record<PlanKey, {stopKeys: string[]; geometry: L.LatLngTuple[]}> = {
+const routePlans: Record<PlanKey, {stopKeys: string[]; geometry: L.LatLngTuple[]; label: string}> = {
   two: {
     stopKeys: ["hobart", "tasman", "freycinet", "deloraine", "miena", "cradle", "queenstown", "burbury", "strahan", "nelson"],
-    geometry: twoWeekGeometry
+    geometry: twoWeekGeometry,
+    label: "Two-week route · 10 stops · 1,228 km"
   },
   one: {
     stopKeys: ["hobart", "tasman", "freycinet", "cradle", "queenstown", "burbury", "strahan", "nelson"],
-    geometry: oneWeekGeometry
+    geometry: oneWeekGeometry,
+    label: "One-week route · 8 stops · 1,083 km"
   }
 };
+
+function nearestIndex(geometry: L.LatLngTuple[], point: L.LatLngTuple): number {
+  let bestIndex = 0;
+  let bestDistance = Number.POSITIVE_INFINITY;
+  geometry.forEach(([lat, lng], index) => {
+    const distance = (lat - point[0]) ** 2 + (lng - point[1]) ** 2;
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      bestIndex = index;
+    }
+  });
+  return bestIndex;
+}
+
+const skippedHighlands = twoWeekGeometry.slice(
+  nearestIndex(twoWeekGeometry, stopCatalogue.freycinet.coordinates),
+  nearestIndex(twoWeekGeometry, stopCatalogue.cradle.coordinates) + 1
+);
 
 const routeMap = L.map("route-map", {scrollWheelZoom: false});
 
@@ -43,9 +63,32 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 const planLayer = L.layerGroup().addTo(routeMap);
 
+const PlanBadge = L.Control.extend({
+  onAdd(): HTMLElement {
+    const badge = L.DomUtil.create("div", "map-plan-badge");
+    badge.id = "map-plan-badge";
+    return badge;
+  }
+});
+new PlanBadge({position: "topright"}).addTo(routeMap);
+
 export function setRoutePlan(plan: PlanKey): void {
-  const {stopKeys, geometry} = routePlans[plan];
+  const {stopKeys, geometry, label} = routePlans[plan];
   planLayer.clearLayers();
+  const badge = document.getElementById("map-plan-badge");
+  if (badge) {
+    badge.textContent = label;
+  }
+  if (plan === "one") {
+    const skippedLine = L.polyline(skippedHighlands, {
+      color: "#7d8d80",
+      opacity: 0.75,
+      weight: 4,
+      dashArray: "6 10"
+    });
+    skippedLine.bindTooltip("Highlands section via Deloraine and Great Lake - only on the two-week plan", {sticky: true});
+    planLayer.addLayer(skippedLine);
+  }
   const routeLine = L.polyline(geometry, {
     color: "#2e6b4e",
     opacity: 0.92,
