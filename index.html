@@ -261,6 +261,37 @@
         margin-bottom: 0;
       }
 
+      .currency-picker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .currency-picker label {
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .currency-picker select {
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .currency-note {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
       .budget-lead {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(280px, 0.65fr);
@@ -722,12 +753,20 @@
             <div>
               <p class="eyebrow">Working budget</p>
               <h2>What two weeks might cost</h2>
+              <div class="currency-picker">
+                <label for="currency-select">Show costs in</label>
+                <select id="currency-select">
+                  <option value="AUD" selected>Australian dollars (A$)</option>
+                  <option value="GBP">Pounds sterling (£)</option>
+                </select>
+              </div>
               <p>This is an honest planning estimate, not a set of invented quotes. It uses a working group of <strong>five travellers: three adults and two children</strong>, sharing family rooms or two-bedroom cabins for 15 nights and using one roomy automatic vehicle.</p>
-              <p>For this version, I would aim for <strong>A$14,000</strong> and keep <strong>A$18,000</strong> as the upper planning limit. Booking early, self-catering some remote nights and choosing a comfortable wagon or SUV instead of a people-mover should pull it towards the lower half.</p>
+              <p>For this version, I would aim for <strong><span class="money" data-aud="14000">A$14,000</span></strong> and keep <strong><span class="money" data-aud="18000">A$18,000</span></strong> as the upper planning limit. Booking early, self-catering some remote nights and choosing a comfortable wagon or SUV instead of a people-mover should pull it towards the lower half.</p>
+              <p class="currency-note" id="currency-note" hidden>Converted at £1 = A$1.93, the mid-market rate in July 2026, and rounded. Check the live rate before booking.</p>
             </div>
             <div class="card budget-total">
               <span>Realistic family planning range</span>
-              <strong>A$11,000-17,700</strong>
+              <strong class="money" data-aud="11000-17700">A$11,000-17,700</strong>
               <span>including a 10% contingency</span>
             </div>
           </div>
@@ -745,32 +784,32 @@
               <tr>
                 <td><strong>Return flights</strong></td>
                 <td>Brisbane-Hobart for five, with checked luggage. Easter-weekend travel is allowed for at the higher end.</td>
-                <td>A$1,500-2,800</td>
+                <td><span class="money" data-aud="1500-2800">A$1,500-2,800</span></td>
               </tr>
               <tr>
                 <td><strong>Vehicle hire</strong></td>
                 <td>Fifteen days in a comfortable automatic SUV, wagon or suitable people-carrier, with a sensible allowance for reduced-excess cover.</td>
-                <td>A$1,800-2,500</td>
+                <td><span class="money" data-aud="1800-2500">A$1,800-2,500</span></td>
               </tr>
               <tr>
                 <td><strong>Fuel and parking</strong></td>
                 <td>The full Hobart-east coast-highlands-west coast-Hobart loop, plus local driving and parking.</td>
-                <td>A$350-550</td>
+                <td><span class="money" data-aud="350-550">A$350-550</span></td>
               </tr>
               <tr>
                 <td><strong>Accommodation</strong></td>
                 <td>Fifteen nights in family rooms, cabins or two-bedroom stays, including a final Hobart night.</td>
-                <td>A$3,900-6,000</td>
+                <td><span class="money" data-aud="3900-6000">A$3,900-6,000</span></td>
               </tr>
               <tr>
                 <td><strong>Food</strong></td>
                 <td>Breakfasts, bakery and picnic lunches, vegetarian dinners, drinks and several cabin meals using local produce.</td>
-                <td>A$1,800-2,900</td>
+                <td><span class="money" data-aud="1800-2900">A$1,800-2,900</span></td>
               </tr>
               <tr>
                 <td><strong>Parks and activities</strong></td>
                 <td>A whole-vehicle national-parks pass plus a measured selection of paid visits, kayaking or guided nature experiences.</td>
-                <td>A$600-1,300</td>
+                <td><span class="money" data-aud="600-1300">A$600-1,300</span></td>
               </tr>
             </tbody>
           </table>
@@ -1029,5 +1068,6 @@
       </section>
     </main>
     <script type="module" src="/src/route-map.ts"></script>
+    <script type="module" src="/src/currency.ts"></script>
   </body>
 </html>
