@@ -261,6 +261,33 @@
         margin-bottom: 0;
       }
 
+      .duration-picker {
+        display: inline-flex;
+        margin: 4px 0 18px;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .duration-choice {
+        padding: 10px 18px;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .duration-choice.active {
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .option.selected {
+        outline: 3px solid var(--leaf);
+        outline-offset: -3px;
+      }
+
       .currency-picker {
         display: inline-flex;
         align-items: center;
@@ -711,15 +738,20 @@
       <section>
         <div class="wrap">
           <h2>Date Options</h2>
+          <div class="duration-picker" role="group" aria-label="Choose trip length">
+            <button type="button" class="duration-choice active" data-duration="two">Two weeks · 27 Mar to 11 Apr</button>
+            <button type="button" class="duration-choice" data-duration="one">One week · 27 Mar to 4 Apr</button>
+          </div>
+          <p class="muted">The driving map, route distances, itinerary and budget below all follow the selected trip length.</p>
           <div class="option-grid">
-            <article class="card option best">
+            <article class="card option best" data-option-plan="two">
               <h3>Best two-week plan</h3>
               <p class="date">Sat 27 Mar to Sun 11 Apr 2027</p>
               <p><strong>Why this one:</strong> Best balance of the dates the family can travel, autumn weather and route comfort. It uses almost the full Queensland autumn school holiday window and avoids Christmas/New Year pressure.</p>
               <p><strong>Weather:</strong> Cooler than summer, generally better for walking, with autumn colours and softer light. Still pack waterproofs and warm layers for Cradle Mountain and the west coast.</p>
               <p><strong>Route fit:</strong> Enough time for Hobart, Tasman Peninsula, Freycinet, a north/central resupply day, Great Lake, Cradle Mountain, Lake Burbury, Queenstown, Strahan, Nelson Falls and a final Hobart night.</p>
             </article>
-            <article class="card option">
+            <article class="card option" data-option-plan="one">
               <h3>Best one-week plan</h3>
               <p class="date">Sat 27 Mar to Sun 4 Apr 2027</p>
               <p><strong>Why this one:</strong> Best if they can only manage a week, but it starts on Easter Saturday. Book flights, Hobart and the vehicle as soon as the group is definite.</p>
@@ -752,7 +784,7 @@
           <div class="budget-lead">
             <div>
               <p class="eyebrow">Working budget</p>
-              <h2>What two weeks might cost</h2>
+              <h2>What <span class="swap" data-two="two weeks" data-one="one week">two weeks</span> might cost</h2>
               <div class="currency-picker">
                 <label for="currency-select">Show costs in</label>
                 <select id="currency-select">
@@ -760,13 +792,13 @@
                   <option value="GBP">Pounds sterling (£)</option>
                 </select>
               </div>
-              <p>This is an honest planning estimate, not a set of invented quotes. It uses a working group of <strong>five travellers: three adults and two children</strong>, sharing family rooms or two-bedroom cabins for 15 nights and using one roomy automatic vehicle.</p>
-              <p>For this version, I would aim for <strong><span class="money" data-aud="14000">A$14,000</span></strong> and keep <strong><span class="money" data-aud="18000">A$18,000</span></strong> as the upper planning limit. Booking early, self-catering some remote nights and choosing a comfortable wagon or SUV instead of a people-mover should pull it towards the lower half.</p>
+              <p>This is an honest planning estimate, not a set of invented quotes. It uses a working group of <strong>five travellers: three adults and two children</strong>, sharing family rooms or two-bedroom cabins for <span class="swap" data-two="15 nights" data-one="8 nights">15 nights</span> and using one roomy automatic vehicle.</p>
+              <p>For this version, I would aim for <strong><span class="money" data-aud="14000" data-aud-one="8500">A$14,000</span></strong> and keep <strong><span class="money" data-aud="18000" data-aud-one="11500">A$18,000</span></strong> as the upper planning limit. Booking early, self-catering some remote nights and choosing a comfortable wagon or SUV instead of a people-mover should pull it towards the lower half.</p>
               <p class="currency-note" id="currency-note" hidden>Converted at £1 = A$1.93, the mid-market rate in July 2026, and rounded. Check the live rate before booking.</p>
             </div>
             <div class="card budget-total">
               <span>Realistic family planning range</span>
-              <strong class="money" data-aud="11000-17700">A$11,000-17,700</strong>
+              <strong class="money" data-aud="11000-17700" data-aud-one="6800-11200">A$11,000-17,700</strong>
               <span>including a 10% contingency</span>
             </div>
           </div>
@@ -788,28 +820,28 @@
               </tr>
               <tr>
                 <td><strong>Vehicle hire</strong></td>
-                <td>Fifteen days in a comfortable automatic SUV, wagon or suitable people-carrier, with a sensible allowance for reduced-excess cover.</td>
-                <td><span class="money" data-aud="1800-2500">A$1,800-2,500</span></td>
+                <td><span class="swap" data-two="Fifteen days" data-one="Eight days">Fifteen days</span> in a comfortable automatic SUV, wagon or suitable people-carrier, with a sensible allowance for reduced-excess cover.</td>
+                <td><span class="money" data-aud="1800-2500" data-aud-one="950-1350">A$1,800-2,500</span></td>
               </tr>
               <tr>
                 <td><strong>Fuel and parking</strong></td>
                 <td>The full Hobart-east coast-highlands-west coast-Hobart loop, plus local driving and parking.</td>
-                <td><span class="money" data-aud="350-550">A$350-550</span></td>
+                <td><span class="money" data-aud="350-550" data-aud-one="320-500">A$350-550</span></td>
               </tr>
               <tr>
                 <td><strong>Accommodation</strong></td>
-                <td>Fifteen nights in family rooms, cabins or two-bedroom stays, including a final Hobart night.</td>
-                <td><span class="money" data-aud="3900-6000">A$3,900-6,000</span></td>
+                <td><span class="swap" data-two="Fifteen nights" data-one="Eight nights">Fifteen nights</span> in family rooms, cabins or two-bedroom stays, including a final Hobart night.</td>
+                <td><span class="money" data-aud="3900-6000" data-aud-one="2100-3200">A$3,900-6,000</span></td>
               </tr>
               <tr>
                 <td><strong>Food</strong></td>
                 <td>Breakfasts, bakery and picnic lunches, vegetarian dinners, drinks and several cabin meals using local produce.</td>
-                <td><span class="money" data-aud="1800-2900">A$1,800-2,900</span></td>
+                <td><span class="money" data-aud="1800-2900" data-aud-one="950-1550">A$1,800-2,900</span></td>
               </tr>
               <tr>
                 <td><strong>Parks and activities</strong></td>
                 <td>A whole-vehicle national-parks pass plus a measured selection of paid visits, kayaking or guided nature experiences.</td>
-                <td><span class="money" data-aud="600-1300">A$600-1,300</span></td>
+                <td><span class="money" data-aud="600-1300" data-aud-one="400-800">A$600-1,300</span></td>
               </tr>
             </tbody>
           </table>
@@ -872,16 +904,30 @@
             <div id="route-map" class="route-map" role="img" aria-label="Interactive road map of the Tasmania itinerary"></div>
             <div class="card route-list">
               <h3>Route Distances</h3>
-              <div class="route-summary">
+              <div class="route-summary" data-plan="two">
                 <div class="route-total"><strong>1,228 km</strong><span>full loop</span></div>
                 <div class="route-total"><strong>17 hr 18</strong><span>wheel time</span></div>
               </div>
-              <ol class="distance-list">
+              <div class="route-summary" data-plan="one" hidden>
+                <div class="route-total"><strong>1,083 km</strong><span>full loop</span></div>
+                <div class="route-total"><strong>15 hr 03</strong><span>wheel time</span></div>
+              </div>
+              <ol class="distance-list" data-plan="two">
                 <li><span>Hobart to Tasman Peninsula</span><span>95 km · 1 hr 21</span></li>
                 <li><span>Tasman Peninsula to Freycinet</span><span>210 km · 3 hr 10</span></li>
                 <li><span>Freycinet to Deloraine</span><span>205 km · 2 hr 37</span></li>
                 <li><span>Deloraine to Miena</span><span>70 km · 1 hr 03</span></li>
                 <li><span>Miena to Cradle Mountain</span><span>164 km · 2 hr 22</span></li>
+                <li><span>Cradle Mountain to Queenstown</span><span>110 km · 1 hr 41</span></li>
+                <li><span>Queenstown to Lake Burbury</span><span>18 km · 14 min</span></li>
+                <li><span>Lake Burbury to Strahan</span><span>67 km · 56 min</span></li>
+                <li><span>Strahan to Nelson Falls</span><span>68 km · 52 min</span></li>
+                <li><span>Nelson Falls to Hobart</span><span>222 km · 3 hr 02</span></li>
+              </ol>
+              <ol class="distance-list" data-plan="one" hidden>
+                <li><span>Hobart to Tasman Peninsula</span><span>95 km · 1 hr 21</span></li>
+                <li><span>Tasman Peninsula to Freycinet</span><span>210 km · 3 hr 10</span></li>
+                <li><span>Freycinet to Cradle Mountain</span><span>294 km · 3 hr 48</span></li>
                 <li><span>Cradle Mountain to Queenstown</span><span>110 km · 1 hr 41</span></li>
                 <li><span>Queenstown to Lake Burbury</span><span>18 km · 14 min</span></li>
                 <li><span>Lake Burbury to Strahan</span><span>67 km · 56 min</span></li>
@@ -928,7 +974,7 @@
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Tasman%27s_Arch%2C_Tasman_National_Park%2C_Tasmania.jpg/960px-Tasman%27s_Arch%2C_Tasman_National_Park%2C_Tasmania.jpg" alt="Tasman's Arch">
               <div class="day-body">
                 <span class="map-stop">Map stop 2</span>
-                <p class="date">Sun 28 to Mon 29 Mar - Tasman Peninsula</p>
+                <p class="date swap" data-two="Sun 28 to Mon 29 Mar - Tasman Peninsula" data-one="Sun 28 Mar - Tasman Peninsula">Sun 28 to Mon 29 Mar - Tasman Peninsula</p>
                 <h3>Cliffs, sea air and an easy first road leg</h3>
                 <p>Drive south-east from Hobart toward Eaglehawk Neck and the Tasman Peninsula. This gives the first road-trip feeling without a punishing drive: coast, cliffs, geology, short walks and big views.</p>
                 <div class="day-columns">
@@ -948,7 +994,7 @@
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Wineglass_Bay_from_Lookout.jpg/960px-Wineglass_Bay_from_Lookout.jpg" alt="Wineglass Bay from lookout">
               <div class="day-body">
                 <span class="map-stop">Map stop 3</span>
-                <p class="date">Tue 30 to Wed 31 Mar - Freycinet</p>
+                <p class="date swap" data-two="Tue 30 to Wed 31 Mar - Freycinet" data-one="Mon 29 to Tue 30 Mar - Freycinet">Tue 30 to Wed 31 Mar - Freycinet</p>
                 <h3>East-coast scenery without rushing north</h3>
                 <p>Move up the east coast to Freycinet. This is the photogenic coastal centrepiece: Wineglass Bay lookout, beaches, kayaking if conditions and operators suit, and enough downtime for the kids to enjoy the place.</p>
                 <div class="day-columns">
@@ -964,7 +1010,7 @@
               </div>
             </article>
 
-            <article id="stop-highlands" class="card itinerary-day">
+            <article id="stop-highlands" class="card itinerary-day" data-two-only>
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Highland_Lakes_Road_near_Great_Lake%2C_Miena%2C_Tasmania_01.jpg/960px-Highland_Lakes_Road_near_Great_Lake%2C_Miena%2C_Tasmania_01.jpg" alt="Great Lake near Miena">
               <div class="day-body">
                 <span class="map-stop">Map stops 4 and 5</span>
@@ -987,8 +1033,8 @@
             <article id="stop-cradle" class="card itinerary-day">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Boat_shed_and_Cradle_Mountain_at_Dove_Lake%2C_Tas.jpg/960px-Boat_shed_and_Cradle_Mountain_at_Dove_Lake%2C_Tas.jpg" alt="Cradle Mountain and Dove Lake">
               <div class="day-body">
-                <span class="map-stop">Map stop 6</span>
-                <p class="date">Sun 4 to Tue 6 Apr - Cradle Mountain</p>
+                <span class="map-stop swap" data-two="Map stop 6" data-one="Map stop 4">Map stop 6</span>
+                <p class="date swap" data-two="Sun 4 to Tue 6 Apr - Cradle Mountain" data-one="Wed 31 Mar to Thu 1 Apr - Cradle Mountain">Sun 4 to Tue 6 Apr - Cradle Mountain</p>
                 <h3>Boardwalks, rainforest, mountains and possible wildlife</h3>
                 <p>Cradle Mountain is the main mountain-and-rainforest stay. Use the shuttle and marked tracks. Let the weather decide the intensity: Dove Lake if suitable, Enchanted Walk and shorter boardwalks if conditions are damp or cold.</p>
                 <div class="day-columns">
@@ -1007,8 +1053,8 @@
             <article id="stop-west" class="card itinerary-day">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/King_River_and_Lake_Burbury_between_Jukes_and_Huxley.jpg/960px-King_River_and_Lake_Burbury_between_Jukes_and_Huxley.jpg" alt="Lake Burbury">
               <div class="day-body">
-                <span class="map-stop">Map stops 7 and 8</span>
-                <p class="date">Wed 7 Apr - Lake Burbury and Queenstown</p>
+                <span class="map-stop swap" data-two="Map stops 7 and 8" data-one="Map stops 5 and 6">Map stops 7 and 8</span>
+                <p class="date swap" data-two="Wed 7 Apr - Lake Burbury and Queenstown" data-one="Fri 2 Apr - Queenstown and Lake Burbury on the way to Strahan">Wed 7 Apr - Lake Burbury and Queenstown</p>
                 <h3>Cross into the west-coast landscape</h3>
                 <p>This is a big change in mood: mountain roads, mining history, Lake Burbury, and a sense of moving into the wilder west. Keep the drive in daylight and stop only at safe pull-offs.</p>
                 <div class="day-columns">
@@ -1027,8 +1073,8 @@
             <article id="stop-strahan" class="card itinerary-day">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/OceanBeachwest_from_air.jpg/960px-OceanBeachwest_from_air.jpg" alt="Ocean Beach near Strahan">
               <div class="day-body">
-                <span class="map-stop">Map stop 9</span>
-                <p class="date">Thu 8 to Fri 9 Apr - Strahan and Ocean Beach</p>
+                <span class="map-stop swap" data-two="Map stop 9" data-one="Map stop 7">Map stop 9</span>
+                <p class="date swap" data-two="Thu 8 to Fri 9 Apr - Strahan and Ocean Beach" data-one="Fri 2 Apr - Strahan and Ocean Beach">Thu 8 to Fri 9 Apr - Strahan and Ocean Beach</p>
                 <h3>Wild beach, river town, rainforest mood</h3>
                 <p>Strahan gives the west coast its sense of space: Ocean Beach, rainforest, river scenery and weather that can become part of the experience. This should be atmospheric, not overpacked.</p>
                 <div class="day-columns">
@@ -1047,8 +1093,8 @@
             <article id="stop-return" class="card itinerary-day">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Nelson_Falls%2C_Princess_River_Conservation_Area.jpg/960px-Nelson_Falls%2C_Princess_River_Conservation_Area.jpg" alt="Nelson Falls">
               <div class="day-body">
-                <span class="map-stop">Map stops 10 and 1</span>
-                <p class="date">Sat 10 to Sun 11 Apr - Nelson Falls, Hobart, fly home</p>
+                <span class="map-stop swap" data-two="Map stops 10 and 1" data-one="Map stops 8 and 1">Map stops 10 and 1</span>
+                <p class="date swap" data-two="Sat 10 to Sun 11 Apr - Nelson Falls, Hobart, fly home" data-one="Sat 3 to Sun 4 Apr - Nelson Falls, Hobart, fly home">Sat 10 to Sun 11 Apr - Nelson Falls, Hobart, fly home</p>
                 <h3>Make the return a proper final chapter</h3>
                 <p>Return from the west coast via Nelson Falls and safe, weather-appropriate stops, then sleep in Hobart before flying home. This avoids the mistake of combining a long west-coast drive with airport pressure.</p>
                 <div class="day-columns">

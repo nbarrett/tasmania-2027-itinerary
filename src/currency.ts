@@ -1,3 +1,5 @@
+import {currentDuration} from "./duration";
+
 const AUD_PER_GBP = 1.93;
 const STORAGE_KEY = "budget-currency";
 
@@ -16,8 +18,9 @@ function formatAmounts(amounts: number[], currency: Currency): string {
 }
 
 function renderCurrency(currency: Currency): void {
+  const duration = currentDuration();
   document.querySelectorAll<HTMLElement>(".money").forEach(element => {
-    const aud = element.dataset.aud;
+    const aud = duration === "one" ? element.dataset.audOne ?? element.dataset.aud : element.dataset.aud;
     if (!aud) {
       return;
     }
@@ -35,6 +38,11 @@ function asCurrency(value: string | null): Currency {
   return value === "GBP" ? "GBP" : "AUD";
 }
 
+function selectedCurrency(): Currency {
+  const select = document.getElementById("currency-select");
+  return select instanceof HTMLSelectElement ? asCurrency(select.value) : "AUD";
+}
+
 const select = document.getElementById("currency-select");
 if (select instanceof HTMLSelectElement) {
   const saved = asCurrency(localStorage.getItem(STORAGE_KEY));
@@ -46,3 +54,5 @@ if (select instanceof HTMLSelectElement) {
     renderCurrency(currency);
   });
 }
+
+document.addEventListener("durationchange", () => renderCurrency(selectedCurrency()));
